@@ -1,3 +1,0 @@
-C:/Users/bhara/CLionProjects/Vulkan_L_CLion/CMakeFiles/Vulkan_L_CLion.dir
-C:/Users/bhara/CLionProjects/Vulkan_L_CLion/CMakeFiles/edit_cache.dir
-C:/Users/bhara/CLionProjects/Vulkan_L_CLion/CMakeFiles/rebuild_cache.dir
