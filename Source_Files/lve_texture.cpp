@@ -84,42 +84,41 @@ namespace lve {
 		for (int i = 0; i < filePath.size(); i++)
 		{
 			const int birgb = { 0 };
-			FILE* fp;
 
-			errno_t err = fopen_s(&fp, filePath[i].c_str(), "rb");
+            fp.open(filePath[i].c_str(),std::ios::in|std::ios::binary);
 
-            if (err != 0)
+            if (!fp.is_open())
 			{
 				assert("Error in opening File: BMP");
 			}
 
-			FileHeader[i].bfType = ReadShort(fp);
+            FileHeader[i].bfType = ReadShort(&fp);
 
 			if (FileHeader[i].bfType != 0x4d42)
 			{
 				assert("Error in File Type: Not BMP");
 			}
 
-			FileHeader[i].bfSize = ReadInt(fp);
-			FileHeader[i].bfReserved1 = ReadShort(fp);
-			FileHeader[i].bfReserved2 = ReadShort(fp);
-			FileHeader[i].bfOffBits = ReadInt(fp);
+            FileHeader[i].bfSize = ReadInt(&fp);
+			FileHeader[i].bfReserved1 = ReadShort(&fp);
+			FileHeader[i].bfReserved2 = ReadShort(&fp);
+			FileHeader[i].bfOffBits = ReadInt(&fp);
 
-			InfoHeader[i].biSize = ReadInt(fp);
-			InfoHeader[i].biWidth = ReadInt(fp);
-			InfoHeader[i].biHeight = ReadInt(fp);
+			InfoHeader[i].biSize = (ReadInt(&fp));
+			InfoHeader[i].biWidth = (ReadInt(&fp));
+			InfoHeader[i].biHeight = (ReadInt(&fp));
 
 			uint32_t texWidth = InfoHeader[i].biWidth;
 			uint32_t texHeight = InfoHeader[i].biHeight;
 
-			InfoHeader[i].biPlanes = ReadShort(fp);
-			InfoHeader[i].biBitCount = ReadShort(fp);
-			InfoHeader[i].biCompression = ReadInt(fp);
-			InfoHeader[i].biSizeImage = ReadInt(fp);
-			InfoHeader[i].biXPelsPerMeter = ReadInt(fp);
-			InfoHeader[i].biYPelsPerMeter = ReadInt(fp);
-			InfoHeader[i].biClrUsed = ReadInt(fp);
-			InfoHeader[i].biClrImportant = ReadInt(fp);
+			InfoHeader[i].biPlanes = ReadShort(&fp);
+			InfoHeader[i].biBitCount = ReadShort(&fp);
+			InfoHeader[i].biCompression = ReadInt(&fp);
+			InfoHeader[i].biSizeImage = ReadInt(&fp);
+			InfoHeader[i].biXPelsPerMeter = ReadInt(&fp);
+			InfoHeader[i].biYPelsPerMeter = ReadInt(&fp);
+			InfoHeader[i].biClrUsed = ReadInt(&fp);
+			InfoHeader[i].biClrImportant = ReadInt(&fp);
 
 			texture = new unsigned char[4 * texWidth * texHeight];
 
@@ -130,9 +129,8 @@ namespace lve {
 				assert("Error in compression");
 			}
 
-			rewind(fp);
-			fseek(fp, 14 + 40, SEEK_SET);
-			
+            fp.seekg(14+40,std::ios::beg);
+
 			if (InfoHeader[i].biBitCount == 24)
 			{
 				unsigned char* tp = texture;
@@ -141,19 +139,19 @@ namespace lve {
 					for (unsigned int s = 0; s < texWidth; s++, tp += 4)
 					{
 						*(tp + 3) = 255;			// a
-						*(tp + 2) = fgetc(fp);		// b
-						*(tp + 1) = fgetc(fp);		// g
-						*(tp + 0) = fgetc(fp);		// r
+						*(tp + 2) = fp.get();		// b
+						*(tp + 1) = fp.get();		// g
+						*(tp + 0) = fp.get();		// r
 					}
 
 					for (int e = 0; e < numExtra; e++)
 					{
-						fgetc(fp);
+                        fp.get();
 					}
 				}
 			}
-			
-			fclose(fp);
+            fp.seekg(std::ios::beg);
+			fp.close();
 			texFile[i].pixels = texture;
 			texFile[i].width = texWidth;
 			texFile[i].height = texHeight;

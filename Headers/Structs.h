@@ -40,7 +40,7 @@ struct TextureFile
 {
 	uint32_t			width;
 	uint32_t			height;
-	unsigned char* pixels;
+    unsigned char* pixels;
 	VkImage				texImage;
 	VkImageView			texImageView;
 	VkSampler			texSampler;

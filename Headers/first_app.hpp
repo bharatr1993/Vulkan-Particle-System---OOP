@@ -45,7 +45,7 @@ double clamp(double x, double upper, double lower)
   void renderScene();
   std::vector<std::string> vertPath = { {"../Shaders/pula_vert.spv"}, {"../Shaders/bckg_vert.spv"}};
   std::vector<std::string> fragPath = { {"../Shaders/pula_frag.spv"}, {"../Shaders/bckg_frag.spv"}};
-  std::vector<std::string> bmpPath = { {"../Pictures/fireem.bmp"},{"../Pictures/fireem.bmp"}, {"../Pictures/hudgo.bmp"},{"../Pictures/hud.bmp"}, {"../Pictures/ball2.bmp"}};
+  std::vector<std::string> bmpPath = { {"../Pictures/ball2.bmp"},{"../Pictures/fireem.bmp"}, {"../Pictures/fireem.bmp"},{"../Pictures/fireem.bmp"}, {"../Pictures/ball2.bmp"}};
   std::string compPath = "../Shaders/pula_comp.spv"; //Unused----Testing
   std::vector<std::vector<std::string>> objPath = {
                                                     {"../Pictures/jupiter.obj"},
