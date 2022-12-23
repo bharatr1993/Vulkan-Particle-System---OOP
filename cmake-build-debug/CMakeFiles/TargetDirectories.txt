@@ -1,0 +1,3 @@
+C:/Users/bhara/CLionProjects/Vulkan_Game_Engine/cmake-build-debug/CMakeFiles/Vulkan_L_CLion.dir
+C:/Users/bhara/CLionProjects/Vulkan_Game_Engine/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/bhara/CLionProjects/Vulkan_Game_Engine/cmake-build-debug/CMakeFiles/rebuild_cache.dir
