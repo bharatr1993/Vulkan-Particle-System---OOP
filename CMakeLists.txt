@@ -19,11 +19,11 @@ add_library(Vulkan_L_Lib3 STATIC IMPORTED)
 #set_property(TARGET Vulkan_L_Lib3 PROPERTY IMPORTED_LOCATION "C:\\Users\\bhara\\CLionProjects\\Vulkan_L_CLion\\lib\\libVkLayer_khronos_validation.dll")
 #--------------------------------------------------------
 
-set_property(TARGET Vulkan_L_Lib2 PROPERTY IMPORTED_LOCATION "..\\lib\\glfw3.dll")
+set_property(TARGET Vulkan_L_Lib2 PROPERTY IMPORTED_LOCATION "../lib/glfw3.dll")
 
-set_property(TARGET Vulkan_L_Lib PROPERTY IMPORTED_LOCATION "..\\lib\\vulkan-1.dll")
+set_property(TARGET Vulkan_L_Lib PROPERTY IMPORTED_LOCATION "../lib/vulkan-1.dll")
 
-set_property(TARGET Vulkan_L_Lib3 PROPERTY IMPORTED_LOCATION "..\\lib\\libVkLayer_khronos_validation.dll")
+set_property(TARGET Vulkan_L_Lib3 PROPERTY IMPORTED_LOCATION "../lib/libVkLayer_khronos_validation.dll")
 
 add_executable(Vulkan_L_CLion ${SOURCES} Headers/lve_computepipeline.hpp Source_Files/lve_computepipeline.cpp)
 
